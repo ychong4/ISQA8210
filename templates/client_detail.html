@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="client-entry">
+  <h2>{{ object.name }}</h2>
+    <p>by {{ object.author }} | {{ object.date }}</p>
+    <p>{{ object.note }}</p>
+  </div>
+
+  <p><a href="{% url 'client_edit' client.pk %}">Edit</a> | <a href="{% url 'client_delete' client.pk %}">Delete</a></p>
+  <p>Back to <a href="{% url 'client_list' %}">All Clients</a>.</p>
+{% endblock content %}
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block title %}Clients{% endblock title %}
+
+{% block content %}
+  {% for client in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <span class="font-weight-bold">{{ client.name }}</span>
+        <span class="font-weight-bold">cell: {{ client.cell_phone }} | </span>
+        <span class="font-weight-bold">acct: {{ client.acct_number }} | </span>
+
+        <span class="font-muted">addr: {{ client.address }} | </span>
+        <span class="font-muted-">city: {{ client.city }} | </span>
+        <span class="font-muted">st: {{ client.state }} | </span>
+        <span class="font-muted">zip: {{ client.zipcode }} | </span>
+        <span class="font-muted">email: {{ client.email }} | </span>
+      </div>
+      <div class="card-body">
+        <p>{{client.notes}}</p>
+        <a href="{% url 'client_edit' client.pk %}">Edit</a> |
+        <a href="{% url 'client_delete' client.pk %}">Delete</a>
+      </div>
+      <div class="card-footer">
+        {% for comment in client.comments.all %}
+          <p>
+            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
+            {{ comment }}
+          </p>
+        {% endfor %}
+      </div>
+    </div>
+    <br />
+  {% endfor %}
+{% endblock content %}
